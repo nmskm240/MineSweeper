@@ -1,0 +1,65 @@
+@startuml MineSweeper
+
+package MineSweeper
+{
+    class Cell
+    {
+        -_aroundCells:List<Cell>
+        +<<property>>OnFlag:bool{private set}
+        +<<property>>IsOpen:bool{private set}
+        +<<property>>CanOpen:bool{get only}
+        +<<property>>HasMine:bool{private set}
+        +<<property>>Mines:int{get only}
+        +AddAroundCell(cell:Cell):void
+        +Init(hasMine:bool):void
+        +Open():void
+        +PutMine():void
+    }
+    class CellViewer
+    {
+        -_image:Image
+        -_contents:Image
+        -_mine:Sprite
+        -_number:Sprite[10]
+        -_open:Color
+        -_close:Color
+        +Open(hasMine:bool,mines:int):void
+    }
+    class CellController
+    {
+        -_model:Cell
+        -_viewer:CellViewer
+        -_animator:Animator
+        +<<property>>Model:Cell{get only}
+        +<<property>>Viewer:CellView:{get only}
+        +<<property>>Pos:Vector2{private set}
+        +Init(pos:Vector2):void
+        +Open():void
+    }
+    class CellFactory
+    class Stage
+    {
+        -_cells:List<CellController>
+        +<<property>>Width:int{private set}
+        +<<property>>Height:int{private set}
+        +<<property>>Mines:int{private set}
+        -FillCell():void
+        -CellInit():void
+        -PutMines():void
+        +Create():void
+    }
+}
+
+abstract Factory<T>
+{
+    -_original:T
+    +Create():T
+}
+
+CellFactory --|> Factory
+CellFactory --> CellController : Create
+CellController --> Cell
+CellController --> CellViewer
+Stage --* CellController
+
+@enduml
