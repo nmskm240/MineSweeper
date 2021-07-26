@@ -10,7 +10,11 @@ namespace MineSweeper
         [SerializeField]
         private Image _contents;
         [SerializeField]
+        private Sprite _none;
+        [SerializeField]
         private Sprite _mine;
+        [SerializeField]
+        private Sprite _flag;
         [SerializeField]
         private Sprite[] _number;
         [SerializeField]
@@ -27,6 +31,11 @@ namespace MineSweeper
         {
             _image.color = _open;
             _contents.sprite = (hasMine) ? _mine : _number[mines];
+        }
+
+        public void ToggleFlag()
+        {
+            _contents.sprite = (_contents.sprite == _flag) ? _none : _flag;
         }
     }
 }

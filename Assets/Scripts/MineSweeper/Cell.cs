@@ -8,7 +8,7 @@ namespace MineSweeper
     {
         private List<Cell> _aroundCells = new List<Cell>();
 
-        public bool OnFlag { get; private set; } = false;
+        public bool OnFlag { get; set; } = false;
         public bool IsOpen { get; private set; } = false;
         public bool CanOpen { get { return !OnFlag && !IsOpen; } }
         public bool HasMine { get; private set; } = false;

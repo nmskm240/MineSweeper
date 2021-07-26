@@ -29,5 +29,14 @@ namespace MineSweeper
                 Viewer.Open(Model.HasMine, Model.Mines);
             }
         }
+
+        public void OnLongPressed()
+        {
+            if (Model.CanOpen || Model.OnFlag)
+            {
+                Viewer.ToggleFlag();
+                Model.OnFlag = !Model.OnFlag;
+            }
+        }
     }
 }

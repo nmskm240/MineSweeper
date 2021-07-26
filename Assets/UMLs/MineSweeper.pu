@@ -5,7 +5,7 @@ package MineSweeper
     class Cell
     {
         -_aroundCells:List<Cell>
-        +<<property>>OnFlag:bool{private set}
+        +<<property>>CanRaiseFlag:bool
         +<<property>>IsOpen:bool{private set}
         +<<property>>CanOpen:bool{get only}
         +<<property>>HasMine:bool{private set}
@@ -19,11 +19,14 @@ package MineSweeper
     {
         -_image:Image
         -_contents:Image
+        -_none:Sprite
         -_mine:Sprite
+        -_flag:Sprite
         -_number:Sprite[10]
         -_open:Color
         -_close:Color
         +Open(hasMine:bool,mines:int):void
+        +ToggleFlag():void
     }
     class CellController
     {
@@ -35,6 +38,7 @@ package MineSweeper
         +<<property>>Pos:Vector2{private set}
         +Init(pos:Vector2):void
         +Open():void
+        +OnLongPressed():void
     }
     class CellFactory
     class Stage

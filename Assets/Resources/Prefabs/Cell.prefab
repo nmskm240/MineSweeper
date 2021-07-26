@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 4430403521050106468}
   - component: {fileID: 4430403521050106467}
   - component: {fileID: 456651598358072245}
+  - component: {fileID: 9018927060157420430}
   m_Layer: 5
   m_Name: Cell
   m_TagString: Untagged
@@ -180,7 +181,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _image: {fileID: 4430403521050106471}
   _contents: {fileID: 4430403520067628648}
+  _none: {fileID: 21300000, guid: 897607d73acc49a488cc937569d07595, type: 3}
   _mine: {fileID: 21300000, guid: 3fdc9baf91d55b84e9b166cac3ac69b1, type: 3}
+  _flag: {fileID: 21300000, guid: bf9aab34f696d744eaab3f7d6ea672c8, type: 3}
   _number:
   - {fileID: 21300000, guid: 897607d73acc49a488cc937569d07595, type: 3}
   - {fileID: 21300000, guid: a5563675a12d4dd4abdbd76f2d6390f8, type: 3}
@@ -255,3 +258,33 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &9018927060157420430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4430403521050106465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6b08780272b89e4d8e932b5bf6c75b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Duration: 0.5
+  OnLongPressDown:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4430403521050106468}
+        m_MethodName: OnLongPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnLongPressUp:
+    m_PersistentCalls:
+      m_Calls: []
