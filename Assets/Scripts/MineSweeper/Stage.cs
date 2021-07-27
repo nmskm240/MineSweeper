@@ -11,14 +11,6 @@ namespace MineSweeper
         public int Height { get; private set; }
         public int Mines { get; private set; }
 
-        private void Awake()
-        {
-            Width = 8;
-            Height = 10;
-            Mines = 20;
-            Create();
-        }
-
         private void FillCell()
         {
             var factory = new CellFactory();
@@ -71,8 +63,11 @@ namespace MineSweeper
             } while (count < Mines);
         }
 
-        public void Create()
+        public void Create(int width, int height, int mines)
         {
+            Width = width;
+            Height = height;
+            Mines = mines;
             FillCell();
             CellInit();
             PutMines();

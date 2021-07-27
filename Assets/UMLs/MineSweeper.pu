@@ -52,6 +52,18 @@ package MineSweeper
         -PutMines():void
         +Create():void
     }
+    class StageViewer
+    {
+        -_gridLayout:GridLayoutGroup
+        +Resize(width:int,height:int,mines:int):void
+    }
+    class StageController
+    {
+        -_model:Stage
+        -_viewer:StageViewer
+        +<<property>>Model:Stage{get only}
+        +<<property>>Viewer:StageViewer{get only}
+    }
 }
 
 abstract Factory<T>
