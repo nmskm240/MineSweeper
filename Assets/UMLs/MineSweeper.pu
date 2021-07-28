@@ -100,7 +100,8 @@ CellFactory --> CellController : Create
 CellController --> Cell
 CellController --> CellViewer
 Stage --* CellController
-CellController .> StageController : callback
+CellController ..> IStageFailCallback : callback
+CellController ..> IStageSuccessCallback : callback
 StageController --> Stage
 StageController --> StageViewer
 StageController --> Counter
