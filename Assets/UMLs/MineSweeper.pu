@@ -2,6 +2,15 @@
 
 package MineSweeper
 {
+    package UI
+    {
+        class Counter
+        {
+            -_image:Image
+            -_value:Text
+            +<<property>>Value:int
+        }
+    }
     class Cell
     {
         -_aroundCells:List<Cell>
@@ -47,6 +56,7 @@ package MineSweeper
         +<<property>>Width:int{private set}
         +<<property>>Height:int{private set}
         +<<property>>Mines:int{private set}
+        +<<property>>IsClear:bool{get only}
         -FillCell():void
         -CellInit():void
         -PutMines():void
@@ -61,6 +71,7 @@ package MineSweeper
     {
         -_model:Stage
         -_viewer:StageViewer
+        -_counter:Counter
         +<<property>>Model:Stage{get only}
         +<<property>>Viewer:StageViewer{get only}
     }
@@ -79,5 +90,6 @@ CellController --> CellViewer
 Stage --* CellController
 StageController --> Stage
 StageController --> StageViewer
+StageController --> Counter
 
 @enduml
