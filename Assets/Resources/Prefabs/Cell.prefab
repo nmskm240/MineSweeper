@@ -210,7 +210,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _model: {fileID: 4430403521050106470}
   _viewer: {fileID: 4430403521050106469}
-  _animator: {fileID: 456651598358072245}
+  _onOpen:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 456651598358072245}
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Open
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onStepMine:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &4430403521050106467
 MonoBehaviour:
   m_ObjectHideFlags: 0

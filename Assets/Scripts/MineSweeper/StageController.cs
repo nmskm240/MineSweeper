@@ -3,7 +3,7 @@ using MineSweeper.UI;
 
 namespace MineSweeper
 {
-    public class StageController : MonoBehaviour
+    public class StageController : MonoBehaviour, IStageSuccessCallback, IStageFailCallback
     {
         [SerializeField]
         private Stage _model;
@@ -20,6 +20,24 @@ namespace MineSweeper
             Model.Create(8, 10, 20);
             Viewer.Resize(Model.Width, Model.Height);
             _counter.Value = Model.Mines;
+            foreach (var cell in Model.Cells)
+            {
+                cell.OnOpen.AddListener(() => OnSuccess());
+                cell.OnStepMine.AddListener(() => OnFail());
+            }
+        }
+
+        public void OnSuccess()
+        {
+            if (Model.IsSuccess)
+            {
+                Debug.Log("Success");
+            }
+        }
+
+        public void OnFail()
+        {
+            Debug.Log("Fail");
         }
     }
 }

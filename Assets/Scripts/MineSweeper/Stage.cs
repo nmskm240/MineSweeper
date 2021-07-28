@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,9 +8,18 @@ namespace MineSweeper
     {
         private List<CellController> _cells = new List<CellController>();
 
+        public IEnumerable<CellController> Cells { get { return _cells; } }
         public int Width { get; private set; }
         public int Height { get; private set; }
         public int Mines { get; private set; }
+        public bool IsSuccess
+        {
+            get
+            {
+                return _cells.Select(cell => !cell.Model.HasMine
+                    && cell.Model.IsOpen).Count() == _cells.Count - Mines;
+            }
+        }
 
         private void FillCell()
         {

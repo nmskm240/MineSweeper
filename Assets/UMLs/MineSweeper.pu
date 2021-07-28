@@ -41,7 +41,10 @@ package MineSweeper
     {
         -_model:Cell
         -_viewer:CellViewer
-        -_animator:Animator
+        -_onOpen:UnityEvent
+        -_onStepMine:UnityEvent
+        +<<property>>OnOpen:UnityEvent{get only}
+        +<<property>>OnStepMine:UnityEvent{get only}
         +<<property>>Model:Cell{get only}
         +<<property>>Viewer:CellView:{get only}
         +<<property>>Pos:Vector2{private set}
@@ -53,10 +56,11 @@ package MineSweeper
     class Stage
     {
         -_cells:List<CellController>
+        +<<property>>Cells:IEnumertable<CellController>{get only}
         +<<property>>Width:int{private set}
         +<<property>>Height:int{private set}
         +<<property>>Mines:int{private set}
-        +<<property>>IsClear:bool{get only}
+        +<<property>>IsSuccess:bool{get only}
         -FillCell():void
         -CellInit():void
         -PutMines():void
@@ -75,6 +79,14 @@ package MineSweeper
         +<<property>>Model:Stage{get only}
         +<<property>>Viewer:StageViewer{get only}
     }
+    interface IStageFailCallback
+    {
+        +OnFail():void
+    }
+    interface IStageSuccessCallback
+    {
+        +OnSuccess():void
+    }
 }
 
 abstract Factory<T>
@@ -88,8 +100,11 @@ CellFactory --> CellController : Create
 CellController --> Cell
 CellController --> CellViewer
 Stage --* CellController
+CellController .> StageController : callback
 StageController --> Stage
 StageController --> StageViewer
 StageController --> Counter
+StageController ..|> IStageFailCallback
+StageController ..|> IStageSuccessCallback
 
 @enduml

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace MineSweeper
 {
@@ -9,8 +10,12 @@ namespace MineSweeper
         [SerializeField]
         private CellViewer _viewer;
         [SerializeField]
-        private Animator _animator;
+        private UnityEvent _onOpen = new UnityEvent();
+        [SerializeField]
+        private UnityEvent _onStepMine = new UnityEvent();
 
+        public UnityEvent OnOpen { get { return _onOpen; } }
+        public UnityEvent OnStepMine { get { return _onStepMine; } }
         public Cell Model { get { return _model; } }
         public CellViewer Viewer { get { return _viewer; } }
         public Vector2 Pos { get; private set; } = Vector2.zero;
@@ -24,9 +29,13 @@ namespace MineSweeper
         {
             if (Model.CanOpen)
             {
-                _animator.Play("Open");
                 Model.Open();
                 Viewer.Open(Model.HasMine, Model.Mines);
+                _onOpen?.Invoke();
+                if (Model.HasMine)
+                {
+                    _onStepMine?.Invoke();
+                }
             }
         }
 
