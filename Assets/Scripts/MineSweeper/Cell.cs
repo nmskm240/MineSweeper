@@ -28,5 +28,12 @@ namespace MineSweeper
         {
             IsOpen = true;
         }
+
+        public void Restore()
+        {
+            OnFlag = false;
+            IsOpen = false;
+            HasMine = false;
+        }
     }
 }

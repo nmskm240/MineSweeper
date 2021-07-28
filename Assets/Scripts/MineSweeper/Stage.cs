@@ -82,5 +82,14 @@ namespace MineSweeper
             CellInit();
             PutMines();
         }
+
+        public void ReCreate()
+        {
+            foreach(var cell in _cells)
+            {
+                cell.Restore();
+            }
+            PutMines();
+        }
     }
 }

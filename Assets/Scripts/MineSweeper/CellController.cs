@@ -25,6 +25,12 @@ namespace MineSweeper
             Pos = pos;
         }
 
+        public void Restore()
+        {
+            Model.Restore();
+            Viewer.Restore();
+        }
+
         public void Open()
         {
             if (Model.CanOpen)

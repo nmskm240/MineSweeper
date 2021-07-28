@@ -37,5 +37,11 @@ namespace MineSweeper
         {
             _contents.sprite = (_contents.sprite == _flag) ? _none : _flag;
         }
+
+        public void Restore()
+        {
+            _image.color = _close;
+            _contents.sprite = _none;
+        }
     }
 }

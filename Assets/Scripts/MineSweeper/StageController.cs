@@ -31,13 +31,17 @@ namespace MineSweeper
         {
             if (Model.IsSuccess)
             {
-                Debug.Log("Success");
+                var factory = new DialogFactory();
+                var dialog = factory.Create().GetComponent<Dialog>();
+                dialog.Show("Success!\n Try again?", () => { Model.ReCreate(); });
             }
         }
 
         public void OnFail()
         {
-            Debug.Log("Fail");
+            var factory = new DialogFactory();
+            var dialog = factory.Create().GetComponent<Dialog>();
+            dialog.Show("Fail!\n Try again?", () => { Model.ReCreate(); });
         }
     }
 }

@@ -10,6 +10,14 @@ package MineSweeper
             -_value:Text
             +<<property>>Value:int
         }
+        class Dialog
+        {
+            -_body:TextMeshProUGUI
+            -_agree:Button
+            -_disAgree:Button
+            +Show(text:string,onAgree:Action,onDisAgree:Action)
+        }
+        class DialogFactory
     }
     class Cell
     {
@@ -23,6 +31,7 @@ package MineSweeper
         +Init(hasMine:bool):void
         +Open():void
         +PutMine():void
+        +Restore():void
     }
     class CellViewer
     {
@@ -36,6 +45,7 @@ package MineSweeper
         -_close:Color
         +Open(hasMine:bool,mines:int):void
         +ToggleFlag():void
+        +Restore():void
     }
     class CellController
     {
@@ -49,6 +59,7 @@ package MineSweeper
         +<<property>>Viewer:CellView:{get only}
         +<<property>>Pos:Vector2{private set}
         +Init(pos:Vector2):void
+        +Restore():void
         +Open():void
         +OnLongPressed():void
     }
@@ -65,6 +76,7 @@ package MineSweeper
         -CellInit():void
         -PutMines():void
         +Create():void
+        +ReCreate():void
     }
     class StageViewer
     {
@@ -95,6 +107,8 @@ abstract Factory<T>
     +Create():T
 }
 
+DialogFactory --|> Factory
+DialogFactory --> Dialog : create 
 CellFactory --|> Factory
 CellFactory --> CellController : Create
 CellController --> Cell
@@ -107,5 +121,6 @@ StageController --> StageViewer
 StageController --> Counter
 StageController ..|> IStageFailCallback
 StageController ..|> IStageSuccessCallback
+StageController --> Dialog
 
 @enduml
